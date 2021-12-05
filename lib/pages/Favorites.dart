@@ -25,6 +25,9 @@ class _FavoritesState extends State<Favorites> {
               await marketProvider.fetchData();
             },
             child: ListView.builder(
+              physics: BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics()
+              ),
               itemCount: favorites.length,
               itemBuilder: (context, index) {
 
