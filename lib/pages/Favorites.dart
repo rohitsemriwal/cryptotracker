@@ -20,14 +20,19 @@ class _FavoritesState extends State<Favorites> {
         List<CryptoCurrency> favorites = marketProvider.markets.where((element) => element.isFavorite == true).toList();
 
         if(favorites.length > 0) {
-          return ListView.builder(
-            itemCount: favorites.length,
-            itemBuilder: (context, index) {
-
-              CryptoCurrency currentCrypto = favorites[index];
-              return CryptoListTile(currentCrypto: currentCrypto);
-
+          return RefreshIndicator(
+            onRefresh: () async {
+              await marketProvider.fetchData();
             },
+            child: ListView.builder(
+              itemCount: favorites.length,
+              itemBuilder: (context, index) {
+
+                CryptoCurrency currentCrypto = favorites[index];
+                return CryptoListTile(currentCrypto: currentCrypto);
+
+              },
+            ),
           );
         }
         else {
