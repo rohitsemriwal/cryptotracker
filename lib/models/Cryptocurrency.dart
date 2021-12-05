@@ -13,6 +13,7 @@ class CryptoCurrency {
   double? circulatingSupply;
   double? ath;
   double? atl;
+  bool isFavorite = false;
 
   CryptoCurrency({required this.id, required this.symbol, required this.name, required this.image, required this.currentPrice, required this.marketCap, required this.marketCapRank, required this.high24, required this.low24, required this.priceChange24, required this.priceChangePercentage24, required this.circulatingSupply, required this.ath, required this.atl});
 
