@@ -1,16 +1,13 @@
 import 'package:cryptotracker/constants/Themes.dart';
-import 'package:cryptotracker/providers/ad_provider.dart';
-import 'package:cryptotracker/services/LocalStorage.dart';
+import 'package:cryptotracker/models/LocalStorage.dart';
 import 'package:cryptotracker/pages/HomePage.dart';
 import 'package:cryptotracker/providers/market_provider.dart';
 import 'package:cryptotracker/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
 
   String currentTheme = await LocalStorage.getTheme() ?? "light";
 
@@ -35,10 +32,6 @@ class MyApp extends StatelessWidget {
 
         ChangeNotifierProvider<ThemeProvider>(
           create: (context) => ThemeProvider(theme),
-        ),
-
-        ChangeNotifierProvider<AdProvider>(
-          create: (context) => AdProvider(),
         ),
       ],
       child: Consumer<ThemeProvider>(
