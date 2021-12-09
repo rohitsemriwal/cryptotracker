@@ -1,4 +1,4 @@
-import 'package:cryptotracker/models/LocalStorage.dart';
+import 'package:cryptotracker/services/LocalStorage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

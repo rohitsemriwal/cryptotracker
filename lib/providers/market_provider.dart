@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:cryptotracker/models/API.dart';
+import 'package:cryptotracker/services/API.dart';
 import 'package:cryptotracker/models/Cryptocurrency.dart';
-import 'package:cryptotracker/models/LocalStorage.dart';
+import 'package:cryptotracker/services/LocalStorage.dart';
 import 'package:flutter/cupertino.dart';
 
 class MarketProvider with ChangeNotifier {
