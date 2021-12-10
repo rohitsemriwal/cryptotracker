@@ -2,10 +2,12 @@ import 'package:cryptotracker/models/Cryptocurrency.dart';
 import 'package:cryptotracker/pages/DetailsPage.dart';
 import 'package:cryptotracker/pages/Favorites.dart';
 import 'package:cryptotracker/pages/Markets.dart';
+import 'package:cryptotracker/providers/ad_provider.dart';
 import 'package:cryptotracker/providers/market_provider.dart';
 import 'package:cryptotracker/providers/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,6 +25,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     viewController = TabController(length: 2, vsync: this);
+
+    // Initialize HomePage Banner
+    AdProvider adProvider = Provider.of<AdProvider>(context, listen: false);
+    adProvider.initializeHomePageBanner();
   }
 
   @override
@@ -99,6 +105,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: Consumer<AdProvider>(
+        builder: (context, adProvider, child) {
+
+          if(adProvider.isHomePageBannerLoaded) {
+            return Container(
+              height: adProvider.homePageBanner.size.height.toDouble(),
+              child: AdWidget(ad: adProvider.homePageBanner,),
+            );
+          }
+          else {
+            return Container(height: 0,);
+          }
+
+        },
       ),
     );
   }
